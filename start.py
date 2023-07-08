@@ -48,6 +48,8 @@ class Player(pygame.sprite.Sprite):
             self.rect.bottom = screenHeight 
 
 
+# Define the enemy object by extending pygame.sprite.Sprite
+# The surface you draw on the screen is now an attribute of 'enemy'
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
@@ -61,12 +63,12 @@ class Enemy(pygame.sprite.Sprite):
         )
         self.speed = random.randint(5, 20)
 
-        # Move sprite based on speed
-        # Remove when it's gone off screen.
-        def update(self):
-            self.rect.move_ip(-self.speed, 0)
-            if self.rect.right < 0:
-                self.kill()
+    # Move the sprite based on speed
+    # Remove the sprite when it passes the left edge of the screen
+    def update(self):
+        self.rect.move_ip(-self.speed, 0)
+        if self.rect.right < 0:
+            self.kill()
 
 
 # Initialize pygame
