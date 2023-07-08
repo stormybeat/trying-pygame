@@ -52,7 +52,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
         self.surf = pygame.Surface((20, 10))
-        self.surf.fill((255, 255, 255))
+        self.surf.fill((255, 0, 0))
         self.rect = self.surf.get_rect(
             center=(
                 random.randint(screenWidth + 20, screenWidth + 100),
@@ -61,12 +61,12 @@ class Enemy(pygame.sprite.Sprite):
         )
         self.speed = random.randint(5, 20)
 
-    # Move the sprite based on speed
-    # Remove the sprite when it passes the left edge of the screen
-    def update(self):
-        self.rect.move_ip(-self.speed, 0)
-        if self.rect.right < 0:
-            self.kill()
+        # Move sprite based on speed
+        # Remove when it's gone off screen.
+        def update(self):
+            self.rect.move_ip(-self.speed, 0)
+            if self.rect.right < 0:
+                self.kill()
 
 
 # Initialize pygame
