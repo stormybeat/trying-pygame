@@ -52,7 +52,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
         self.surf = pygame.Surface((20, 10))
-        self.surf.fill((255, 0, 0))
+        self.surf.fill((255, 255, 255))
         self.rect = self.surf.get_rect(
             center=(
                 random.randint(screenWidth + 20, screenWidth + 100),
@@ -76,6 +76,9 @@ pygame.init()
 # The size is determined by the constant screenWidth and screenHeight
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 
+# Create event for adding an enemy.
+addEnemy = pygame.USEREVENT + 1
+pygame.time.set_timer(addEnemy, 250)
 # Instantiate player. Right now, this is just a rectangle.
 player = Player()
 
@@ -102,10 +105,17 @@ while running:
         # Check for QUIT event. If QUIT, then set running to false.
         elif event.type == QUIT:
             running = False
+        #adding an enemy
+        elif event.type == addEnemy:
+            new_enemy = Enemy()
+            enemies.add(new_enemy)
+            all_sprites.add(new_enemy)
     
     # Get the set of keys pressed and check for user input
     pressedKeys = pygame.key.get_pressed()
 
+    # Update enemy position
+    enemies.update()
 
     # Update the player sprite based on user keypresses
     player.update(pressedKeys)
@@ -117,8 +127,12 @@ while running:
     for entity in all_sprites:
         screen.blit(entity.surf, entity.rect)
 
-    # Flip everything to the display
-    pygame.display.flip()
+    # Check if any enemies have collided with the player
+    if pygame.sprite.spritecollideany(player, enemies):
     
+    # If so, then remove the player and stop the loop
+        player.kill()
+        running = False
+
     # Update the display
     pygame.display.flip()
