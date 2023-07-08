@@ -89,6 +89,8 @@ enemies = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 
+# Setup the clock for a decent framerate
+clock = pygame.time.Clock()
 
 # Variable to keep the main loop running
 running = True
@@ -136,3 +138,7 @@ while running:
 
     # Update the display
     pygame.display.flip()
+    
+    # Ensure program maintains a rate of 30 frames per second
+    clock.tick(30)
+
