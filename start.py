@@ -17,7 +17,7 @@ from pygame.locals import (
 # Define constants for the screen width and height
 screenWidth = 800
 screenHeight = 600
-
+uScore= 0
 # Define a player object by extending pygame.sprite.Sprite
 # The surface drawn on the screen is now an attribute of 'player'
 class Player(pygame.sprite.Sprite):
@@ -69,9 +69,11 @@ class Enemy(pygame.sprite.Sprite):
     # Move the sprite based on speed
     # Remove the sprite when it passes the left edge of the screen
     def update(self):
+        global uScore
         self.rect.move_ip(-self.speed, 0)
         if self.rect.right < 0:
             self.kill()
+            uScore += 1
 
 # Define the cloud object by extending pygame.sprite.Sprite
 # Use an image for a better-looking sprite
@@ -207,3 +209,4 @@ while running:
 # All done! Stop and quit the mixer.
 pygame.mixer.music.stop()
 pygame.mixer.quit()
+print(uScore)
