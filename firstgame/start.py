@@ -23,7 +23,7 @@ uScore= 0
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("assets/jet.png").convert()
+        self.surf = pygame.image.load("firstgame/assets/jet.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.surf.get_rect()
     # Move the sprite based on user keypresses
@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
-        self.surf = pygame.image.load("assets/missile.png").convert()
+        self.surf = pygame.image.load("firstgame/assets/missile.png").convert()
         self.surf.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.surf.get_rect(
             center=(
@@ -80,7 +80,7 @@ class Enemy(pygame.sprite.Sprite):
 class Cloud(pygame.sprite.Sprite):
     def __init__(self):
         super(Cloud, self).__init__()
-        self.surf = pygame.image.load("assets/cloud.png").convert()
+        self.surf = pygame.image.load("firstgame/assets/cloud.png").convert()
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         # The starting position is randomly generated
         self.rect = self.surf.get_rect(
@@ -130,14 +130,14 @@ all_sprites.add(player)
 # Load and play our background music
 # Sound source: http://ccmixter.org/files/Apoxode/59262
 # License: https://creativecommons.org/licenses/by/3.0/
-pygame.mixer.music.load("assets/Apoxode_-_Electric_1.mp3")
+pygame.mixer.music.load("firstgame/assets/Apoxode_-_Electric_1.mp3")
 pygame.mixer.music.play(loops=-1)
 
 # Load all our sound files
 # Sound sources: Jon Fincher
-moveUpSound = pygame.mixer.Sound("assets/Rising_putter.ogg")
-moveDownSound = pygame.mixer.Sound("assets/Falling_putter.ogg")
-collision_sound = pygame.mixer.Sound("assets/Collision.ogg")
+moveUpSound = pygame.mixer.Sound("firstgame/assets/Rising_putter.ogg")
+moveDownSound = pygame.mixer.Sound("firstgame/assets/Falling_putter.ogg")
+collision_sound = pygame.mixer.Sound("firstgame/assets/Collision.ogg")
 
 # Set the base volume for all sounds
 moveUpSound.set_volume(0.5)
